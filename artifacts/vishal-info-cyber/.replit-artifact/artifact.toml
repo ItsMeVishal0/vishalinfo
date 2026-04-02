@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "VISHAL INFO CYBER"
+version = "1.0.0"
+id = "artifacts/vishal-info-cyber"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24241
+
+[services.development]
+run = "pnpm --filter @workspace/vishal-info-cyber run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/vishal-info-cyber", "run", "build" ]
+publicDir = "artifacts/vishal-info-cyber/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24241"
+BASE_PATH = "/"
